@@ -9,42 +9,58 @@ struct Node {
 
 //initailly head will be null
 struct Node* head = NULL;
+struct Node* new_node = NULL;
+
+struct Node* createNode(int data){
+    // Allocating memory to a node
+  struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+
+  // insert the new node
+  new_node->value = data;
+  new_node->next = NULL;
+  return new_node;  
+}
 
 //inserting before head is pointing   
 void insertAtBeginning(int data) {
 
   // Allocating memory to a node
-  struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+  new_node = createNode(data);
 
-  // insert the new node
-  new_node->value = data;
+  if(head == NULL){
+      head = new_node;
+  }
+
   new_node->next = head;
-
-  // Move head to new node
   head = new_node;
 }
 
 // Insert a node after head pointing node
-void insertAfter(int data) {
+void insertAfter(int data, int key) {
+
   if (head == NULL) {
-    printf("the given previous node cannot be NULL");
+    printf("head is null as no node is there");
     return;
   }
 
-  //llocating memory to a node
-  struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
-  
+  new_node = createNode(data);
+
+  struct Node* last = head;
+
+  while (last->value != key)
+    last = last->next;
+
   //inserting new node.
-  new_node->value = data;
-  new_node->next = head->next;
+  new_node->next = last->next;
   // in head next, new node address is set.
-  head->next = new_node;
+  last->next = new_node;
 }
 
 //inserting node at the last.
 void insertAtEnd(int data) {
-  //allocating memory to new node
-  struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
+
+  new_node = createNode(data);
+
   // we have taken temp node pointer and set it to position of head pointing.
   struct Node* last = head;
 
@@ -118,6 +134,7 @@ void search(int value){
 // Print the linked list
 void printList() {
 
+  printf("Linked list: ");
   //new tempopary pointer is taken to traverse and it is pointer to head node.
   struct Node *temp = head;
   while (temp != NULL) {
@@ -127,8 +144,7 @@ void printList() {
 }
 
 // reverse the linked list
- void reverse()
-{
+ void reverse(){
 
     struct Node* prev = NULL;
     struct Node* current = head;
@@ -153,22 +169,25 @@ void printList() {
 
 int main() {
  
+
   insertAtEnd(1);
+
   insertAtBeginning(2);
   insertAtBeginning(3);
-  insertAtEnd(4);
-  insertAfter(5);
 
-  printf("Linked list: ");
+  insertAtEnd(4);
+  
+  insertAfter(5,3);
+  
   printList();
 
   deleteNode(3);
-  printf("Linked list: ");
-  printList();
-  search(5);
-  reverse();
-  printf("Reverse Linked list: ");
-  printList();
-  printf("\n");
   
+  printList();
+  
+  search(5);
+
+  reverse();
+
+  printList();
 }
