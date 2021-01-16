@@ -4,7 +4,7 @@
 
 // This is structure to hold the element and the pointer to the next element.
 struct node{ 
-    char value; 
+    int value; 
     struct node* next; 
 };
 
@@ -12,18 +12,18 @@ struct node{
 struct node *top=0;
 
 // This method will add new element on the top of the stack.
-void insert(char value){
+void push(int value){
     struct node* element = (struct node*)malloc(sizeof(struct node)); 
     element -> value = value; 
     element -> next = top;  
     top = element; 
-    printf("Insert operation performed: %d\n",top -> value);
+    printf("%d is pushed\n",top -> value);
 
 }
 // Remove element from the top of the stack
-void delete(){
+void pop(){
     if(top != NULL){
-        printf("Popped operation performed: %d\n",top -> value);
+        printf("%d is popped\n",top -> value);
         struct node* temp = top;
         top = top -> next;
         temp= NULL;
@@ -42,7 +42,7 @@ void display(){
     if(top == 0){
         printf("Stack is empty\n");
     }else{
-        printf("stack : ");
+        printf("Stack : ");
         while(temp != 0){
             printf("%d ", temp-> value);
             temp = temp -> next;
@@ -52,13 +52,21 @@ void display(){
 }
 
 int main(){    
-    insert(100);
-    insert(101);
-    insert(102);
-    insert(103);
+    
+    //initially stack
     display();
-    delete();
-    delete();
+
+    push(100);
+    push(101);
+    push(102);
+    push(103);
+
     display();
+    
+    pop();
+    pop();
+    
+    display();
+
     return 0;
 }

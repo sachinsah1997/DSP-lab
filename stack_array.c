@@ -18,7 +18,7 @@ int isStackEmpty(){
 }
 
 // this method will perform push operation on stack.
-void insert(int value){
+void push(int value){
 	if(isStackEmpty())
 		top = 0;
 	else if( top == size_A )
@@ -33,15 +33,19 @@ void insert(int value){
 // this method will display all the element in the stack.
 void display(){
 
-	printf("Stack elements :");
-	for(int i=0;i<=top;i++){
+	if(isStackEmpty()){
+        printf("Stack is empty\n");
+    }else{
+	printf("Stack :");
+	for(int i=top;i>=0;i--){
 		printf(" %d",A[i]);
 	}
 	printf("\n");
+  }
 }
 
 // this methos will perform pop operation on stack.
-int delete(){
+int pop(){
 	if(isStackEmpty())
 		printf("\n Stack is Empty \n");
 	else
@@ -51,17 +55,20 @@ int delete(){
 	return A[top-1];
 }
 
-int main()
-{
-	insert(0);
-	insert(1);
-	insert(2);
-	insert(3);
+int main(){
+	
+	//initially stack
+	display();
+
+	push(0);
+	push(1);
+	push(2);
+	push(3);
 
 	display();
 
-	delete(); 			
-	delete(); 		
+	pop(); 			
+	pop(); 		
 	
 	display();	
 
