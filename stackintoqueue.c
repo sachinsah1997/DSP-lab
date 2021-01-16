@@ -15,7 +15,7 @@ int count = 0;
     		printf("Queue is overflow\n");
     	}else{
     		top1++;
-    		A[top1] = value;	
+    		A[top1] = value;
     	} 
     }
 
@@ -68,7 +68,7 @@ int count = 0;
        }
        //this will remove top element of Stack B.
        int pop = pop2();
-       printf("Dequeue operation performed : %d\n", pop);
+       printf("%d deleted\n", pop);
       // As element decreases after pop opeartion
        count--;
 
@@ -82,7 +82,7 @@ int count = 0;
     /*Function to display the elements in the stack*/
     void display(){
 
-    	printf("Queue elements : ");
+    	printf("Queue :");
         int i;
         for (i = 0;i < count;i++){
             printf(" %d ", A[i]);
@@ -92,14 +92,21 @@ int count = 0;
      
 
     int main(){
+
+      display();
+
 	    enqueue(100);
 	    enqueue(101);
 	    enqueue(102);
 	    enqueue(103);
 	    enqueue(104);
+
 	    display();
-        dequeue();
-        dequeue();
-        display();
+
+        
+      dequeue();
+      dequeue();
+
+      display();
     	return 0;
     }

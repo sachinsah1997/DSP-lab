@@ -17,8 +17,9 @@ void display(){
         printf("Stack element : ");
         //i have printed it from front to rear because queue traverse from front to rear. 
         //stack element will be inverse of it.
-        for(int i=front1;i<=count;i++){
-            printf("%d ",A[i]);
+        rear1 = count;
+        for(int i=front1;i<=rear1;i++){
+                printf("%d ",A[i]);
             }
         }
         printf("\n");
@@ -63,8 +64,8 @@ int dequeue(){
     }
 
     int top_element = A[count];
-    //rear1++;
-   // front1 = rear1 ;
+
+   front1 = rear1 = 0 ;
     count--;
     
     // here we are copying the element of B queue to A queue which we have done to eliminate top element.
@@ -80,7 +81,7 @@ int dequeue(){
 //this method will do pop operation.
 void pop(){
     int popped = dequeue();
-    printf("Popped operation performed : %d\n", popped);
+    printf("%d popped\n", popped);
 }
 
 //this method will do push operation.
@@ -95,9 +96,12 @@ int main()
         push(102);
         push(103);
         push(104);
+
         display();
+        
         pop();
         pop();
+        
         display();
         return 0;
 }
