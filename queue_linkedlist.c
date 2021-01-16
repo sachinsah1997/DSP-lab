@@ -8,20 +8,20 @@ struct node {
 }; 
 
 // this will show the front pointer and be use in future reference.
-struct node *front = 0;
+struct node *front = NULL;
 // this will show the last pointer and be use in future reference.
-struct node *rear = 0;
+struct node *rear = NULL;
 
 // This method will perform enqueue operation in queue
-void insert(int value) 
+void enqueue(int value) 
 { 
 	struct node* element = (struct node*)malloc(sizeof(struct node));
 	element -> value = value;
-	element -> next = 0; 
+	element -> next = NULL; 
 	
-	printf("enqueue operation performed : %d\n",value);
+	printf("%d inserted\n",value);
 	// if queue is empty, then new node is set to front and rear both 
-	if (front == 0 && rear == 0){ 
+	if (front == NULL && rear == NULL){ 
 		front = rear = element; 
 		return; 
 	}else{
@@ -31,17 +31,17 @@ void insert(int value)
 } 
 
 // This method will perform dequeue operation in queue
-void delete() 
-{ 
+void dequeue(){
+
 	struct node *temp;
 	temp = front;
  
-	if (front == 0 && rear == 0){
+	if (front == NULL && rear == NULL){
 		printf("queue is empty \n");
 	}else{
 		front = front-> next;
 	}
-	printf("Dequeue operation performed : %d\n",temp -> value);  
+	printf("%d deleted\n",temp -> value);  
 	temp = NULL; 
 } 
 
@@ -51,27 +51,34 @@ void display(){
     struct node *temp;
     temp = front;
 
-    if(front == 0){
+    if(front == NULL){
         printf("queue is empty\n");
     }else{
         printf("queue : ");
-        while(temp != rear){
+        while(temp != NULL){
             printf("%d ", temp-> value);
             temp = temp -> next;
         }
         printf("\n");
     }
 }
-void main() 
-{ 
-	insert(100); 
-	insert(101); 
-	insert(102); 
-	insert(103); 
-	insert(104);
+
+int main(){
+
+	display();
+
+	enqueue(100); 
+	enqueue(101); 
+	enqueue(102); 
+	enqueue(103); 
+	enqueue(104);
+
 	display(); 
-	delete();
-	delete();
+	
+	dequeue();
+	dequeue();
+
 	display(); 
-	 
+	
+	return 0; 
 } 

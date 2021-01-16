@@ -9,7 +9,7 @@
     int front = - 1;
 
     // this method will do Enqueue operation in the queue.
-    void insert(int value){
+    void enqueue(int value){
 
         if(rear == MAX-1){
             printf("Queue is in Overflow \n");
@@ -17,27 +17,27 @@
         else if(front == -1 && rear == -1){
     
                 front = rear = 0;
-                printf("Enqueue operation performed : %d\n",value );
+                printf("%d inserted\n",value );
                 A[rear] = value;
         }else{
-            printf("Enqueue operation performed : %d\n",value );
-            rear++;
-            A[rear] = value;
+               printf("%d inserted\n",value );
+               rear++;
+               A[rear] = value;
         }
     }
 
     // this method will do dequeue operation in the queue.
-    void delete(){
+    void dequeue(){
 
         if(front == -1 || rear == -1){
             printf("Queue is in Underflow \n");
             return ;
         }
         else if(front==rear){
-            printf("Dequeue operation performed : %d\n", A[front]);
+            printf("%d deleted\n", A[front]);
             front = rear = -1;
         }else{
-            printf("Dequeue operation performed : %d\n", A[front]);
+            printf("%d deleted\n", A[front]);
             front++;
         }
     }
@@ -59,15 +59,21 @@
         }
     }
 
-    void main(){
+    int main(){
             
-            insert(100);
-            insert(101);
-            insert(102);
-            insert(103);
-            insert(104);
             display();
-            delete();
-            delete();
+
+            enqueue(100);
+            enqueue(101);
+            enqueue(102);
+            enqueue(103);
+            enqueue(104);
+
             display();
+            
+            dequeue();
+            dequeue();
+
+            display();
+        return 0;
     }
