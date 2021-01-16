@@ -9,7 +9,7 @@ struct node{
 };
 
 // this will show the top pointer and be use in future reference.
-struct node *top=0;
+struct node *top=NULL;
 
 // This method will add new element on the top of the stack.
 void push(int value){
@@ -39,11 +39,11 @@ void display(){
     struct node *temp;
     temp = top;
 
-    if(top == 0){
+    if(top == NULL){
         printf("Stack is empty\n");
     }else{
         printf("Stack : ");
-        while(temp != 0){
+        while(temp != NULL){
             printf("%d ", temp-> value);
             temp = temp -> next;
         }
