@@ -14,7 +14,7 @@ int getMax (int arr[], int n){
 
 void countSort (int arr[], int n, int exp){
 
-  int output[n];		// output array
+  int output[n];    // output array
   int i, count[10] = { 0 };
 
   // Store count of occurrences in count[]
@@ -57,6 +57,11 @@ int main (){
 
   int n;
   scanf ("%d", &n);
+  
+  if(n<=0){
+      printf("INVALID INPUT");
+      return 0;
+  }
 
   int arr[n];
 
@@ -64,6 +69,10 @@ int main (){
     {
       int temp;
       scanf ("%d", &temp);
+      if(temp<0){
+          printf("INVALID INPUT");
+          return 0;
+      }
       arr[i] = temp;
     }
 
