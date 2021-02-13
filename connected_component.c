@@ -19,6 +19,13 @@ struct node* createNode(int vertex) {
   return newNode;
 }
 
+// Function to handle error.
+void error_exit(char *err)
+{
+    printf("%s\n", err);
+    exit(-1);
+}
+
 // Create a graph
 struct Graph* createGraph(int numVertices) {
  
@@ -26,6 +33,10 @@ struct Graph* createGraph(int numVertices) {
   graph->numVertices = numVertices;
   graph->visited = calloc(numVertices , sizeof(int));
   graph->array = calloc(numVertices , sizeof(struct node*));
+
+  // If memory not allocated.
+    if (graph == NULL || graph->visited == NULL || graph->array == NULL)
+        error_exit("Memory full. (create_graph)");
 
   return graph;
 }
@@ -71,7 +82,7 @@ void searchNumComponent(struct Graph* graph,int vertex){
     struct node *array_head = graph->array[vertex];
     while (array_head != NULL)
     {
-        // If unvisited adjacent vertex found call searchNumComponent recursively
+        // If unvisited adjacent vertex is found then call searchNumComponent recursively
         if (graph->visited[array_head->vertex] == 0)
             searchNumComponent(graph ,array_head->vertex);
         array_head = array_head->next;
