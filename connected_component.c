@@ -62,18 +62,18 @@ void printGraph(struct Graph* graph) {
   }
 }
 
-// Function for DFS search.
-void dfs(struct Graph* graph,int vertex){
+// Function for check no of Component.
+void searchNumComponent(struct Graph* graph,int vertex){
     // Set the vertex v visited.
     graph->visited[vertex] = 1;
 
     // Check for all adjacent vertices of vertex v.
     struct node *array_head = graph->array[vertex];
-    while (NULL != array_head)
+    while (array_head != NULL)
     {
-        // If unvisited adjacent vertex found call dfs recursively
+        // If unvisited adjacent vertex found call searchNumComponent recursively
         if (graph->visited[array_head->vertex] == 0)
-            dfs(graph ,array_head->vertex);
+            searchNumComponent(graph ,array_head->vertex);
         array_head = array_head->next;
     }
 }
@@ -110,7 +110,7 @@ int main() {
     {
         if (graph->visited[vertex] == 0)
         {
-            dfs(graph,vertex);
+            searchNumComponent(graph,vertex);
             component_count++;
         }
     }
