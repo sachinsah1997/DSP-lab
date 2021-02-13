@@ -96,7 +96,7 @@ int main() {
     struct Graph* graph = createGraph(numVertices);
    
     while (numEdges>0){
-        int srcVertex, destVertex;
+        int srcVertex, destVertex;        
         fscanf(fp, "%d %d", &srcVertex, &destVertex);
         addEdge(graph, srcVertex-1, destVertex-1);
         numEdges--;
@@ -108,7 +108,7 @@ int main() {
     int component_count = 0;
     for (int vertex = 1; vertex < graph->numVertices; vertex++)
     {
-        if (0 == graph->visited[vertex])
+        if (graph->visited[vertex] == 0)
         {
             dfs(graph,vertex);
             component_count++;
