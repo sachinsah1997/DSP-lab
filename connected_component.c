@@ -36,7 +36,7 @@ struct Graph* createGraph(int numVertices) {
 
   // If memory not allocated.
     if (graph == NULL || graph->visited == NULL || graph->array == NULL)
-        error_exit("Memory full. (create_graph)");
+        error_exit("Memory full while creating graph");
 
   return graph;
 }
@@ -47,11 +47,15 @@ void addEdge(struct Graph* graph, int s, int d) {
   //undirected graph is ginumVerticesen
   // Add edge from s to d
   struct node* newNode = createNode(d);
+  if (newNode == NULL)
+        error_exit("Memory full while creating node");
   newNode->next = graph->array[s];
   graph->array[s] = newNode;
 
   // Add edge from d to s
   newNode = createNode(s);
+  if (graph == NULL || graph->visited == NULL || graph->array == NULL)
+        error_exit("Memory full while creating node");
   newNode->next = graph->array[d];
   graph->array[d] = newNode;
 }
